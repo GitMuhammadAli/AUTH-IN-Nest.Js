@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Put, Delete, Body, ValidationPipe, UsePipes } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, ValidationPipe, UsePipes, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { CreateUserDto } from './dto/create-user.dto/create-user.dto';
+import { CreateUserDtoFromDtoFolder } from './dto/create-user.dto/create-user.dto';
+import { UpdateUserDtoFromDtoFolder } from './dto/update-user.dto/update-user.dto';
 
 @Controller('My-App')
 export class AppController {
@@ -10,28 +11,29 @@ export class AppController {
 
   @Post()
   @UsePipes(new ValidationPipe())
-  postUser(@Body() createUserdto: CreateUserDto) {
+  postUser(@Body() createUserdto: CreateUserDtoFromDtoFolder) {
     return this.appService.CreateUser(createUserdto);
 
   }
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  get() {
+    return this.appService.getUsers();
   }
 
   @Get(':id')
-  getoneUser() {
-
+  getoneUser(@Param('id') id: string) {
+    return this.appService.getOneUsers(id)
   }
 
   @Put(':id')
-  UpdateUser() {
-
+  UpdateUser(@Param('id') id: string, @Body() userupdated: UpdateUserDtoFromDtoFolder) {
+    return this.appService.UpdateUser(id, userupdated);
   }
 
   @Delete(':id')
-  DeleteUser() {
+  DeleteUser(@Param('id') id: string) {
+    return this.appService.DeleteUser(id);
 
   }
 

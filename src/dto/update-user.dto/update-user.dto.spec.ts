@@ -1,7 +1,7 @@
-import { UpdateUserDto } from './update-user.dto';
+import { UpdateUserDtoFromDtoFolder } from './update-user.dto';
 
 describe('UpdateUserDto', () => {
   it('should be defined', () => {
-    expect(new UpdateUserDto()).toBeDefined();
+    expect(new UpdateUserDtoFromDtoFolder()).toBeDefined();
   });
 });

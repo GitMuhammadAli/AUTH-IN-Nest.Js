@@ -1,1 +1,1 @@
-export class DeleteUserDto {}
+export class DeleteUserDtoFromDtoFolder { }
