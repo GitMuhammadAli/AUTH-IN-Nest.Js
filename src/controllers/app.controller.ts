@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Body, ValidationPipe, UsePipes, Param } from '@nestjs/common';
-import { AppService } from './app.service';
-import { CreateUserDtoFromDtoFolder } from './dto/create-user.dto/create-user.dto';
-import { UpdateUserDtoFromDtoFolder } from './dto/update-user.dto/update-user.dto';
+import { AppService } from '../services/app.service';
+import { CreateUserDtoFromDtoFolder } from '../dto/create-user.dto/create-user.dto';
+import { UpdateUserDtoFromDtoFolder } from '../dto/update-user.dto/update-user.dto';
 
 @Controller('My-App')
 export class AppController {
