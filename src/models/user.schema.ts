@@ -6,10 +6,11 @@ export class Userschema extends Document {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true })
-  password: string;
+  @Prop({ required: true, unique: true })
+  email: string;
 
-  @Prop({ required: true, enum: ['admin', 'user'] })
+
+  @Prop({ required: true, enum: ['student', 'instructor'] })
   role: string;
 }
 

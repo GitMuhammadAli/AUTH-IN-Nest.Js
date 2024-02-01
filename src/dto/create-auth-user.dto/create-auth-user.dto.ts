@@ -1,10 +1,10 @@
 import { MinLength } from 'class-validator';
 
-export class CreateUserDtoFromDtoFolder {
+export class CreateAuthUserDtoFromDtoFolder {
     name: string;
 
     @MinLength(8)
-    email: string;
+    password: string;
 
     role: string;
 }
