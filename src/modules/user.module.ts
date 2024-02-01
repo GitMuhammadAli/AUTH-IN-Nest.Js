@@ -10,8 +10,9 @@ import { AuthModule } from './auth.module';
 
 @Module({
     imports: [
-        Loginschema,
         MongooseModule.forFeature([{ name: Userschema.name, schema: Myuserschema }]),
+        Loginschema,
+        AuthModule,
     ],
     controllers: [AppController],
     providers: [AppService, AuthService],
