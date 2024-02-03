@@ -1,10 +1,13 @@
-import { MinLength } from 'class-validator';
+import { IsNotEmpty, MinLength } from 'class-validator';
 
 export class CreateAuthUserDtoFromDtoFolder {
-    name: string;
+    @IsNotEmpty()
+    readonly name: string;
 
+    @IsNotEmpty()
     @MinLength(8)
-    password: string;
+    readonly password: string;
 
-    role: string;
+    @IsNotEmpty()
+    readonly role: string;
 }
