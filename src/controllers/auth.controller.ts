@@ -17,4 +17,10 @@ export class AuthController {
     login(@Body() login: LoginAuthUser): Promise<{ token: string }> {
         return this.authService.login(login);
     }
+
+    @Get()
+    getall() {
+
+        return this.authService.getall();
+    }
 }

@@ -9,7 +9,6 @@ import { LoginAuthUser } from 'src/dto/login-auth-user/login-auth-user';
 import { Loginschema } from 'src/models/login.schema';
 
 import * as bcrypt from 'bcrypt';
-import { InitializeOnPreviewAllowlist } from '@nestjs/core';
 
 @Injectable()
 export class AuthService {
@@ -17,9 +16,8 @@ export class AuthService {
     constructor(
         @InjectModel(Loginschema.name) private readonly LoginschemaModel: Model<Loginschema>,
         @Inject(JwtService) private readonly jwtService: JwtService,
-        private readonly configservice: ConfigService
     ) { }
-    async register(signUpDto: CreateAuthUserDtoFromDtoFolder): Promise<{ token: string }> {
+    async register(signUpDto: CreateAuthUserDtoFromDtoFolder): Promise<{ message: string, token: string }> {
         const { name, password, role } = signUpDto
 
         if (!['admin', 'manager'].includes(role)) {
@@ -33,15 +31,14 @@ export class AuthService {
             role
         })
         const token = this.jwtService.sign({ id: Authuser._id, name: Authuser.name, role: Authuser.role, })
-        return { token }
+        return { message: 'register succsessfull', token }
     }
 
-    async login(loginDto: LoginAuthUser): Promise<{ token: string }> {
-        const { name, password } = loginDto;
-
+    async login(loginDto: LoginAuthUser): Promise<{ message: string, token: string }> {
+        const { name, password } = loginDto
         const Authuser = await this.LoginschemaModel.findOne({ name });
         if (!Authuser) {
-            throw new UnauthorizedException('Invalid name');
+            throw new UnauthorizedException('Invalid name or password');
         }
 
         const checkpassword = await bcrypt.compare(password, Authuser.password);
@@ -50,7 +47,7 @@ export class AuthService {
         }
 
         const token = this.jwtService.sign({ id: Authuser._id, name: Authuser.name, role: Authuser.role, });
-        return { token };
+        return { message: 'login succsessfull', token };
     }
 
 
