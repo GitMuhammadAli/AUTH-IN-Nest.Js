@@ -2,9 +2,7 @@ import { Injectable, Inject, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { Model } from 'mongoose';
-import { ConfigService } from '@nestjs/config';
 import { CreateAuthUserDtoFromDtoFolder } from 'src/dto/create-auth-user.dto/create-auth-user.dto';
-import { UpdateAuthUserDtoFromDtoFolder } from 'src/dto/update-auth-user.dto/update-auth-user.dto';
 import { LoginAuthUser } from 'src/dto/login-auth-user/login-auth-user';
 import { Loginschema } from 'src/models/login.schema';
 
